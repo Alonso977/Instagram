@@ -38,6 +38,11 @@
 		F8FD19E52916E3C50039815C /* IGFeedPostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19E42916E3C50039815C /* IGFeedPostHeaderTableViewCell.swift */; };
 		F8FD19E72916E3F30039815C /* IGFeedPostActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19E62916E3F30039815C /* IGFeedPostActionsTableViewCell.swift */; };
 		F8FD19E92916E4270039815C /* IGFeedPostGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19E82916E4270039815C /* IGFeedPostGeneralTableViewCell.swift */; };
+		F8FD19EB2919B7B60039815C /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19EA2919B7B60039815C /* FormTableViewCell.swift */; };
+		F8FD19EE291B276F0039815C /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19ED291B276F0039815C /* PhotoCollectionViewCell.swift */; };
+		F8FD19F0291B27E00039815C /* ProfileInfoHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19EF291B27E00039815C /* ProfileInfoHeaderCollectionReusableView.swift */; };
+		F8FD19F2291B28170039815C /* ProfileTabsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19F1291B28170039815C /* ProfileTabsCollectionReusableView.swift */; };
+		F8FD19F4291DCB120039815C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD19F3291DCB120039815C /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +81,11 @@
 		F8FD19E42916E3C50039815C /* IGFeedPostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F8FD19E62916E3F30039815C /* IGFeedPostActionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostActionsTableViewCell.swift; sourceTree = "<group>"; };
 		F8FD19E82916E4270039815C /* IGFeedPostGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostGeneralTableViewCell.swift; sourceTree = "<group>"; };
+		F8FD19EA2919B7B60039815C /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
+		F8FD19ED291B276F0039815C /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		F8FD19EF291B27E00039815C /* ProfileInfoHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		F8FD19F1291B28170039815C /* ProfileTabsCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabsCollectionReusableView.swift; sourceTree = "<group>"; };
+		F8FD19F3291DCB120039815C /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Models.swift; path = "Instagram/Views/CollectionView Headers/Models.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +160,7 @@
 		F888F5CC28BD5F310063E5F8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F8FD19EC291B27040039815C /* CollectionView Headers */,
 				F8FD19E02916E0E70039815C /* Cells */,
 				F888F5C028BD5F0E0063E5F8 /* Assets.xcassets */,
 				F888F5CF28BD5F7A0063E5F8 /* Storyboards */,
@@ -160,6 +171,7 @@
 		F888F5CD28BD5F370063E5F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F8FD19F3291DCB120039815C /* Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				F8FD19E32916E38A0039815C /* Home Feed */,
+				F8FD19EA2919B7B60039815C /* FormTableViewCell.swift */,
+				F8FD19ED291B276F0039815C /* PhotoCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -249,6 +263,15 @@
 				F8FD19E82916E4270039815C /* IGFeedPostGeneralTableViewCell.swift */,
 			);
 			path = "Home Feed";
+			sourceTree = "<group>";
+		};
+		F8FD19EC291B27040039815C /* CollectionView Headers */ = {
+			isa = PBXGroup;
+			children = (
+				F8FD19EF291B27E00039815C /* ProfileInfoHeaderCollectionReusableView.swift */,
+				F8FD19F1291B28170039815C /* ProfileTabsCollectionReusableView.swift */,
+			);
+			path = "CollectionView Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,20 +400,25 @@
 				F888F5DF28BD61200063E5F8 /* RegistrationViewController.swift in Sources */,
 				F8FD19E92916E4270039815C /* IGFeedPostGeneralTableViewCell.swift in Sources */,
 				F888F5D528BD606F0063E5F8 /* NotificationViewController.swift in Sources */,
+				F8FD19EB2919B7B60039815C /* FormTableViewCell.swift in Sources */,
 				F8FD19E22916E1410039815C /* IGFeedPostTableViewCell.swift in Sources */,
 				F888F5E728BD61780063E5F8 /* ListViewController.swift in Sources */,
 				F8C0577C290ED04900176BE5 /* AuthManager.swift in Sources */,
 				F888F5B528BD5F0C0063E5F8 /* AppDelegate.swift in Sources */,
+				F8FD19F0291B27E00039815C /* ProfileInfoHeaderCollectionReusableView.swift in Sources */,
 				F888F5EF28BD61F60063E5F8 /* PublishPostViewController.swift in Sources */,
 				F888F5B728BD5F0C0063E5F8 /* SceneDelegate.swift in Sources */,
 				F888F5E328BD615A0063E5F8 /* EditProfileViewController.swift in Sources */,
+				F8FD19F2291B28170039815C /* ProfileTabsCollectionReusableView.swift in Sources */,
 				F888F5D728BD607D0063E5F8 /* ProfileViewController.swift in Sources */,
 				F8FD19DF29104D620039815C /* Extension.swift in Sources */,
 				F8C0577E290ED09700176BE5 /* StoreManager.swift in Sources */,
 				F8C0577A290ECF4D00176BE5 /* DatabaseManager.swift in Sources */,
+				F8FD19F4291DCB120039815C /* Models.swift in Sources */,
 				F888F5E528BD616C0063E5F8 /* SettingsViewController.swift in Sources */,
 				F888F5D328BD605C0063E5F8 /* CameraViewController.swift in Sources */,
 				F8FD19E72916E3F30039815C /* IGFeedPostActionsTableViewCell.swift in Sources */,
+				F8FD19EE291B276F0039815C /* PhotoCollectionViewCell.swift in Sources */,
 				F888F5EB28BD61A60063E5F8 /* SearchResultViewController.swift in Sources */,
 				F888F5E128BD613A0063E5F8 /* PostViewController.swift in Sources */,
 			);

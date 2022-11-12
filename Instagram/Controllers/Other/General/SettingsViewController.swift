@@ -17,8 +17,10 @@ struct SettingCellModel {
 final class SettingsViewController: UIViewController {
     
     private let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let tableView = UITableView(frame: .zero,
+                                    style: .grouped)
+        tableView.register(UITableViewCell.self,
+                           forCellReuseIdentifier: "cell")
         
         return tableView
     }()
@@ -30,7 +32,7 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModels()
-        
+        tableView.reloadData()
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         tableView.delegate = self
@@ -57,7 +59,7 @@ final class SettingsViewController: UIViewController {
                 self?.didTapOriginalPost()
             }
         ])
-        
+
         data.append([
             SettingCellModel(title: "Terms Service") { [weak self] in
                 self?.openURL(type: .terms)
@@ -65,11 +67,11 @@ final class SettingsViewController: UIViewController {
             SettingCellModel(title: "Privacy Policy") { [weak self] in
                 self?.openURL(type: .privacy)
             },
-            SettingCellModel(title: "Hepl / FeedBack") { [weak self] in
+            SettingCellModel(title: "Help / FeedBack") { [weak self] in
                 self?.openURL(type: .help)
             }
         ])
-        
+
         data.append([
             SettingCellModel(title: "Log Out") { [weak self] in
                 self?.didTapLogOut()
@@ -102,12 +104,13 @@ final class SettingsViewController: UIViewController {
         let vc = EditProfileViewController()
         vc.title = "Edit Profile"
         let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
     
     private func didTapInviteFriends() {
         // Show share sheet to invite friends
-        
+        print("Tap invite friends")
         
     }
     
@@ -149,7 +152,7 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSection(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
     }
     

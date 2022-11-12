@@ -7,31 +7,107 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+struct EditProfileForModel {
+    let label: String
+    let placeholder: String
+    var value: String?
+}
+
+final class EditProfileViewController: UIViewController, UITableViewDataSource {
+    
+    
+    
+    private let tableview: UITableView = {
+        let tableView = UITableView()
+        tableView.register(FormTableViewCell.self,
+                           forCellReuseIdentifier: FormTableViewCell.identifier)
+        return tableView
+    }()
+    
+    private var model = [[EditProfileForModel]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureModels()
+        tableview.tableHeaderView = createTableHeaderView()
+        tableview.dataSource = self
+        view.addSubview(tableview)
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(didTapSave))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(didTapCancell))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(didTapCancel))
     }
     
+    private func configureModels() {
+        // name. username, website and bio
+        let section1labels = ["Name", "Username", "Bio"]
+        var section1 = [EditProfileForModel]()
+        for label in section1labels {
+            let model = EditProfileForModel(label: label,placeholder: "Enter\(label)...", value: nil)
+            section1.append(model)
+        }
+        model.append(section1)
+        // email. phone and gender
+        let section2labels = ["Email", "Phone", "Gender"]
+        var section2 = [EditProfileForModel]()
+        for label in section2labels {
+            let model = EditProfileForModel(label: label,placeholder: "Enter\(label)...", value: nil)
+            section2.append(model)
+        }
+        model.append(section2)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableview.frame = view.bounds
+    }
+    
+    // Action -- tableView
+    private func createTableHeaderView() -> UIView {
+        let header = UIView(frame: CGRect(x: 0,
+                                          y: 0,
+                                          width: view.width,
+                                          height: view.height/4).integral)
+        let size = header.height/1.5
+        let profilePhotoButton = UIButton(frame: CGRect(x: (view.width-size)/2,
+                                                        y: (header.height-size)/2,
+                                                        width: size,
+                                                        height: size))
+        header.addSubview(profilePhotoButton)
+        profilePhotoButton.layer.masksToBounds = true
+        profilePhotoButton.layer.cornerRadius = size/2.0
+        profilePhotoButton.tintColor = .label
+        profilePhotoButton.addTarget(self,
+                                     action: #selector(didTapProfilePhotoButton),
+                                     for: .touchUpInside)
+        profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"),
+                                              for: .normal)
+        profilePhotoButton.layer.borderWidth = 1
+        profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        
+        return header
+    }
+    
+    @objc private func didTapProfilePhotoButton() {
+        print("Tap change")
+    }
     
     @objc private func didTapSave() {
-        
+        // Save info to database
+        dismiss(animated: true,
+                completion: nil)
     }
-    @objc private func didTapCancell() {
-        
+    @objc private func didTapCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func didTapChanceProfilePicture() {
-        let actionSheet = UIAlertController(title: "Profile Piucture", message: "Change your profile picture", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Profile Picture", message: "Change your profile picture", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: {_ in
             
         }))
@@ -44,4 +120,37 @@ class EditProfileViewController: UIViewController {
         present(actionSheet, animated: true)
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return model.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = model[indexPath.section][indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as! FormTableViewCell
+        
+        cell.configure(width: model)
+        cell.delegate = self
+        
+        return cell
+    }
+    
+    // crea un seccion donde aplica un titulo que divide dos secciones
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard section == 1 else {
+            return nil
+        }
+        return "Private Information"
+    }
+    
+}
+
+extension EditProfileViewController: FormTableViewCellDelegate {
+    func formTableViewCell(_ cell: FormTableViewCell, didiUpdateField updateModel: EditProfileForModel) {
+        // Update the model
+        
+    }
 }
